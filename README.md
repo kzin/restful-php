@@ -11,20 +11,28 @@ em /user cria um usuário novo no banco de dados e dar um GET em /user/{id} reto
 
 Usamos o rewrite engine para procurar pela rota na nossa URL e assim redirecionar o método certo.
 
+```
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule (.*)$ api.php?request=$1 [QSA,NC,L]
 </IfModule>
+```
 
 # banco de dados
 
 Usaremos uma tabela para guardar nossos usuários:
 
+```
 CREATE TABLE IF NOT EXISTS `user_data` (
 `id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
 `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
 `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
 `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+```
+
+# Connection.class.php
+
+Preencha essa classe com os dados para acessar o seu banco de dados.
